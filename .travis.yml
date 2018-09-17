@@ -1,27 +1,37 @@
 sudo: required
 services:
-  - docker
+- docker
 language: go
-
 matrix:
   include:
-  - name: "Moby"
+  - name: Moby
     env: URL="https://github.com/moby/moby" NAME="moby.coment"
-  - name: "Vue"
+  - name: Vue
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
-
 before_install:
-  - |
-    if [[ $TRAVIS_OS_NAME = linux ]]; then
-      sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
-      sudo -E apt-get -yq update
-      sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install gcc-6 g++-6
-      sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
-    fi
-  - go get -u gopkg.in/bblfsh/client-go.v2/...
-  - docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd
-  - docker exec -it bblfshd bblfshctl driver install --all
-
+- |
+  if [[ $TRAVIS_OS_NAME = linux ]]; then
+    sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+    sudo -E apt-get -yq update
+    sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install gcc-6 g++-6
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
+  fi
+- go get -u gopkg.in/bblfsh/client-go.v2/...
+- docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd
+  bblfsh/bblfshd
+- docker exec -it bblfshd bblfshctl driver install --all
 script:
-  - go run *.go $URL $NAME
+- go run *.go $URL $NAME
+deploy:
+  provider: s3
+  access_key_id: AKIAJJAWMVOKCRWRR5MQ
+  secret_access_key:
+    secure: LFy7aQoph3AoYiUrIKuTQph8T+9VA89SPcqCCc8GtBeZG0b8h/TuXOKI2xlOBdRlEa6mxE0+8Pf39zPI6QfzFLo6Aeg0ZtDjz53UUyKX3z6wtkyND0GWkcF33wmEoihecUJdssQBwyAdSM7Vhf+l/Ie5a0E9Rtfe/uGj5EBkr2ya324C57qYY2r0yaW+XDKgqFhpKEel+npG+pWpQw2uO9U3g2WsVoJWFeVuYfjIOXp96SzWSdjL3hKLXdupSpVb2p0uVNyOPFb/jtO1mBJvaMmwaDFT+H6imYpZ7B/DXQ6VAgeMa/cpchZG4Rwwd0Xr04x7iHsjxHSiP7MfESO4tynOuoo2FI5bbEQnLcOjy0geLQX3SLHgTFL66KdfY7ZcJYjbFfJEgJ00cwAwgTIVfoaJ/eClpHQFjrAQVMVCDkMfAllLsVGEeqJM3TbKJwVKdWhYQ6HwxZiowRjcT6FSBEwilHk9ewDGecOer0Z95G23W8LMPI2CYspA+3ULe2F09CrQ8WmN8wuPLkFGgoxP++RgIjJ8pTT7NnO8rCRItnLqq7k2K2mA2+h8jaurs2Zket1vXm2+a5Jfm2jrFRwR/ZuQOvoIH77hjxRXbZfPRM7NloHEFF1y+3fsPcEyhLPLHPS189Lq4o8NLBi/zIL5vMZGB0lO1Wi5OW6yf8xH+Fs=
+  bucket: fetch-comments
+  skip_cleanup: true
+  file: "$NAME"
+  acl: public_read
+  on:
+    branch: master
+    repo: meyskens/fetch-comments
