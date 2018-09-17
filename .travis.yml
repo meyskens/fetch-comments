@@ -51,8 +51,7 @@ before_install:
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
   fi
 - go get -u gopkg.in/bblfsh/client-go.v2/...
-- docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd
-  bblfsh/bblfshd
+- docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd
 - docker exec -it bblfshd bblfshctl driver install --all
 script:
 - go run *.go $URL $NAME
