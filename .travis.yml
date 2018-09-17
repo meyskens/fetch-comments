@@ -37,7 +37,7 @@ before_install:
 script:
 - travis_wait 50 go run *.go $URL $NAME
 - mkdir release
-- mv $NAME release/
+- if [[ "$(cat $NAME | wc -l )" != "0" ]]; then mv $NAME release/ && echo moved $NAME; fi
 deploy:
   provider: s3
   access_key_id: AKIAJJAWMVOKCRWRR5MQ
