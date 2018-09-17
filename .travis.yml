@@ -22,7 +22,7 @@ before_install:
   bblfsh/bblfshd
 - docker exec -it bblfshd bblfshctl driver install --all
 script:
-- go run *.go $URL $NAME
+- travis_wait go run *.go $URL $NAME
 deploy:
   provider: s3
   access_key_id: AKIAJJAWMVOKCRWRR5MQ
