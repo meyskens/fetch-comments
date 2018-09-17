@@ -30,7 +30,8 @@ func getFiles(url string) (*RepoFiles, billy.Filesystem, error) {
 		return nil, nil, err
 	}
 	r, err := git.PlainClone(dir, false, &git.CloneOptions{
-		URL: url,
+		URL:   url,
+		Depth: 1,
 	})
 	if err != nil {
 		return nil, nil, err
