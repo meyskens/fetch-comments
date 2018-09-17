@@ -51,6 +51,8 @@ func getCommentsOnRepo(url, name string) {
 		comments, err := listComments("go", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
+		} else {
+			log.Println(err)
 		}
 	}
 
@@ -59,6 +61,8 @@ func getCommentsOnRepo(url, name string) {
 		comments, err := listComments("java", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
+		} else {
+			log.Println(err)
 		}
 	}
 
@@ -67,6 +71,8 @@ func getCommentsOnRepo(url, name string) {
 		comments, err := listComments("javascript", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
+		} else {
+			log.Println(err)
 		}
 	}
 
@@ -75,6 +81,8 @@ func getCommentsOnRepo(url, name string) {
 		comments, err := listComments("python", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
+		} else {
+			log.Println(err)
 		}
 	}
 
