@@ -31,7 +31,7 @@ matrix:
     env: URL="https://github.com/symfony/symfony" NAME="symfony.coment"
   - name: CodeIgniter
     env: URL="https://github.com/bcit-ci/CodeIgniter" NAME="codeigniter.coment"
-  - name: CodeIgniter
+  - name: Composer
     env: URL="https://github.com/composer/composer" NAME="composer.coment"
   #Pyhon
   - name: Flask
