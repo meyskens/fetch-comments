@@ -55,7 +55,7 @@ before_install:
   bblfsh/bblfshd
 - docker exec -it bblfshd bblfshctl driver install --all
 script:
-- travis_wait 50 go run *.go $URL $NAME
+- go run *.go $URL $NAME
 - mkdir release
 - if [[ "$(cat $NAME | wc -l )" != "0" ]]; then mv $NAME release/ && echo moved $NAME; fi
 deploy:
