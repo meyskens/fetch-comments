@@ -40,7 +40,7 @@ func fetchComments(language, file string) ([]string, error) {
 
 func cleanComment(comment string) string {
 	// filter urls
-	urls := xurls.Strict().FindAllString(comment, -1)
+	urls := xurls.Strict.FindAllString(comment, -1)
 	for _, url := range urls {
 		comment = strings.Replace(comment, url, "", -1)
 	}
