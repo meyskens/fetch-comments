@@ -18,6 +18,11 @@ var repos = map[string]string{
 }
 
 func main() {
+	if len(os.Args) > 2 { // ./fetch-comments https://github.com/moby/moby moby.coment
+		// fetch a specific repo
+		getCommentsOnRepo(os.Args[1], os.Args[2])
+		return
+	}
 	wg := sync.WaitGroup{}
 	for name, url := range repos {
 		log.Println("Adding", url)
