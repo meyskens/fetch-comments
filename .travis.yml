@@ -11,6 +11,7 @@ matrix:
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
 
 before_install:
+  - go get -u gopkg.in/bblfsh/client-go.v2/...
   - docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd
   - docker exec -it bblfshd bblfshctl driver install --all
 
