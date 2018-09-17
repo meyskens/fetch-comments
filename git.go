@@ -17,12 +17,16 @@ type RepoFiles struct {
 	PythonFiles     []string
 	JavaFiles       []string
 	JavascriptFiles []string
+	PHPFiles        []string
+	RubyFiles       []string
 }
 
 var goFile = regexp.MustCompile(`\.go$`)
 var pythonFile = regexp.MustCompile(`\.py$`)
 var javaFile = regexp.MustCompile(`\.java$`)
 var javascriptFile = regexp.MustCompile(`\.js$`)
+var phpFile = regexp.MustCompile(`\.php$`)
+var rubyFile = regexp.MustCompile(`\.rb$`)
 
 func getFiles(url string) (*RepoFiles, billy.Filesystem, error) {
 	dir, err := ioutil.TempDir(os.TempDir(), "fetch-comments")
@@ -62,6 +66,8 @@ func getFiles(url string) (*RepoFiles, billy.Filesystem, error) {
 		PythonFiles:     []string{},
 		JavaFiles:       []string{},
 		JavascriptFiles: []string{},
+		PHPFiles:        []string{},
+		RubyFiles:       []string{},
 	}
 
 	for _, name := range fileNames {
@@ -76,6 +82,12 @@ func getFiles(url string) (*RepoFiles, billy.Filesystem, error) {
 		}
 		if javascriptFile.MatchString(name) {
 			repoFiles.JavascriptFiles = append(repoFiles.JavascriptFiles, name)
+		}
+		if phpFile.MatchString(name) {
+			repoFiles.PHPFiles = append(repoFiles.PHPFiles, name)
+		}
+		if rubyFile.MatchString(name) {
+			repoFiles.RubyFiles = append(repoFiles.RubyFiles, name)
 		}
 	}
 

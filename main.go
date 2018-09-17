@@ -86,6 +86,26 @@ func getCommentsOnRepo(url, name string) {
 		}
 	}
 
+	for _, file := range repoFiles.PHPFiles {
+		log.Println("Looking at", file)
+		comments, err := listComments("php", file, fs)
+		if err == nil {
+			writeComments(outFile, comments)
+		} else {
+			log.Println(err)
+		}
+	}
+
+	for _, file := range repoFiles.RubyFiles {
+		log.Println("Looking at", file)
+		comments, err := listComments("ruby", file, fs)
+		if err == nil {
+			writeComments(outFile, comments)
+		} else {
+			log.Println(err)
+		}
+	}
+
 }
 
 func listComments(lang, fileName string, fs billy.Filesystem) ([]string, error) {
