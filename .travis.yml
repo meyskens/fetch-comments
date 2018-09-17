@@ -1,0 +1,18 @@
+sudo: required
+services:
+  - docker
+language: go
+
+matrix:
+  include:
+  - name: "Moby"
+    env: URL="https://github.com/moby/moby" NAME="moby.coment"
+  - name: "Vue"
+    env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
+
+before_install:
+  - docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd
+  - docker exec -it bblfshd bblfshctl driver install --all
+
+script:
+  - go run *.go $URL $NAME
