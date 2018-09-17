@@ -8,6 +8,8 @@ matrix:
     env: URL="https://github.com/moby/moby" NAME="moby.coment"
   - name: Vue
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
+  - name: React
+    env: URL="https://github.com/facebook/react" NAME="react.coment"
   - name: String boot
     env: URL="https://github.com/spring-projects/spring-boot" NAME="springboot.coment"
   - name: Rails
