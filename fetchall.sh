@@ -9,6 +9,6 @@ read_dom () {
 
 while read_dom; do
     if [[ "$ENTITY" == "Key" ]]; then
-        curl https://s3.eu-west-3.amazonaws.com/fetch-comments/$CONTENT >allcomments
+        curl https://s3.eu-west-3.amazonaws.com/fetch-comments/$CONTENT >>allcomments
     fi
 done < list.xml
