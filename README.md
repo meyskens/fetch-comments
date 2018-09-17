@@ -23,3 +23,6 @@ var repos = map[string]string{
 }
 ```
 (This should be improved)
+
+## Provided comment lists
+This projects analyses a few popular open source projects and uploads the artifacts to S3 using Travis CI (thank you for the free build time!). You can find these at https://s3.eu-west-3.amazonaws.com/fetch-comments/
