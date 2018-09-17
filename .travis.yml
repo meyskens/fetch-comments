@@ -52,7 +52,12 @@ before_install:
   fi
 - go get -u gopkg.in/bblfsh/client-go.v2/...
 - docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd
-- docker exec -it bblfshd bblfshctl driver install --all
+- docker exec -it bblfshd bblfshctl driver install bblfsh/python-driver
+- docker exec -it bblfshd bblfshctl driver install bblfsh/java-driver
+- docker exec -it bblfshd bblfshctl driver install bblfsh/go-driver
+- docker exec -it bblfshd bblfshctl driver install bblfsh/ruby-driver
+- docker exec -it bblfshd bblfshctl driver install bblfsh/php-driver
+- docker exec -it bblfshd bblfshctl driver install bblfsh/javascript-driver
 script:
 - go run *.go $URL $NAME
 - mkdir release
