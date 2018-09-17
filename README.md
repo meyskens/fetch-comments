@@ -7,7 +7,7 @@ This project uses [bblfsh](https://bblf.sh/v2.6.1/) and [go-git](https://github.
 ## How to use
 To use bblfsh you will need a server set up using Docker.  
 `docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd`  
-You will also need to have drivers for the languages you need to use. Since we want diverse data I suggest just installin all using:  
+You will also need to have drivers for the languages you need to use. Since we want diverse data I suggest just installing all using:  
 `docker exec -it bblfshd bblfshctl driver install --all`  
 
 Now that bblfshd is running you can start running this repo. 
