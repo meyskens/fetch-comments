@@ -8,6 +8,15 @@ matrix:
     env: URL="https://github.com/moby/moby" NAME="moby.coment"
   - name: Vue
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
+  - name: String boot
+    env: URL="https://github.com/spring-projects/spring-boot" NAME="springboot.coment"
+  - name: Rails
+    env: URL="https://github.com/rails/rails" NAME="rails.coment"
+  - name: Laravel
+    env: URL="https://github.com/laravel/laravel" NAME="laravel.coment"
+  - name: Flask
+    env: URL="https://github.com/pallets/flask" NAME="flask.coment"
+    
 before_install:
 - |
   if [[ $TRAVIS_OS_NAME = linux ]]; then
