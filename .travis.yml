@@ -6,6 +6,8 @@ matrix:
   include:
   - name: Moby
     env: URL="https://github.com/moby/moby" NAME="moby.coment"
+  - name: Go-Git
+    env: URL="https://github.com/src-d/go-git" NAME="gogit.coment"
   - name: Vue
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
   - name: React
