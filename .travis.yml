@@ -11,6 +11,14 @@ matrix:
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
 
 before_install:
+  - |
+    if [[ $TRAVIS_OS_NAME = linux ]]; then
+      sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+      sudo -E apt-get -yq update
+      sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install gcc-6 g++-6
+      sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
+    fi
   - go get -u gopkg.in/bblfsh/client-go.v2/...
   - docker run -d --name bblfshd --privileged -p 9432:9432 -v /var/lib/bblfshd:/var/lib/bblfshd bblfsh/bblfshd
   - docker exec -it bblfshd bblfshctl driver install --all
