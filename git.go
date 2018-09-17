@@ -55,6 +55,9 @@ func getFiles(url string) (*RepoFiles, billy.Filesystem, error) {
 
 	for _, file := range files {
 		if file.IsDir() {
+			if file.Name() == "vendor" {
+				break // we do not want vendored code as small projects may contain typos
+			}
 			fileNames = append(fileNames, getAllDirectoryFiles(worktree.Filesystem, file.Name())...)
 		} else {
 			fileNames = append(fileNames, file.Name())
