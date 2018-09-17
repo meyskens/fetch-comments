@@ -47,6 +47,7 @@ func getCommentsOnRepo(url, name string) {
 	log.Println("Parsing files in", url)
 
 	for _, file := range repoFiles.GoFiles {
+		log.Println("Looking at", file)
 		comments, err := listComments("go", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
@@ -54,6 +55,7 @@ func getCommentsOnRepo(url, name string) {
 	}
 
 	for _, file := range repoFiles.JavaFiles {
+		log.Println("Looking at", file)
 		comments, err := listComments("java", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
@@ -61,6 +63,7 @@ func getCommentsOnRepo(url, name string) {
 	}
 
 	for _, file := range repoFiles.JavascriptFiles {
+		log.Println("Looking at", file)
 		comments, err := listComments("javascript", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
@@ -68,6 +71,7 @@ func getCommentsOnRepo(url, name string) {
 	}
 
 	for _, file := range repoFiles.PythonFiles {
+		log.Println("Looking at", file)
 		comments, err := listComments("python", file, fs)
 		if err == nil {
 			writeComments(outFile, comments)
