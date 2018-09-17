@@ -4,23 +4,43 @@ services:
 language: go
 matrix:
   include:
+  #Go
   - name: Moby
     env: URL="https://github.com/moby/moby" NAME="moby.coment"
   - name: Go-Git
     env: URL="https://github.com/src-d/go-git" NAME="gogit.coment"
+  - name: Kubernetes
+    env: URL="https://github.com/kubernetes/kubernetes" NAME="kubernetes.coment"
+  #JS
   - name: Vue
     env: URL="https://github.com/vuejs/vue" NAME="vue.coment"
   - name: React
     env: URL="https://github.com/facebook/react" NAME="react.coment"
+  - name: D3
+    env: URL="https://github.com/d3/d3" NAME="d3.coment"
+  #Java
   - name: String boot
     env: URL="https://github.com/spring-projects/spring-boot" NAME="springboot.coment"
+  #Ruby (may not work!)
   - name: Rails
     env: URL="https://github.com/rails/rails" NAME="rails.coment"
+  #PHP
   - name: Laravel
     env: URL="https://github.com/laravel/laravel" NAME="laravel.coment"
+  - name: Symfony
+    env: URL="https://github.com/symfony/symfony" NAME="symfony.coment"
+  - name: CodeIgniter
+    env: URL="https://github.com/bcit-ci/CodeIgniter" NAME="codeigniter.coment"
+  - name: CodeIgniter
+    env: URL="https://github.com/composer/composer" NAME="composer.coment"
+  #Pyhon
   - name: Flask
     env: URL="https://github.com/pallets/flask" NAME="flask.coment"
-    
+  - name: Django
+    env: URL="https://github.com/django/django" NAME="django.coment"
+  - name: Ansible
+    env: URL="https://github.com/ansible/ansible" NAME="ansible.coment"
+
 before_install:
 - |
   if [[ $TRAVIS_OS_NAME = linux ]]; then
