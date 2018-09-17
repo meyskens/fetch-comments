@@ -57,6 +57,7 @@ before_install:
 script:
 - go run *.go $URL $NAME
 - mkdir release
+- cat $NAME | wc -l 
 - if [[ "$(cat $NAME | wc -l )" != "0" ]]; then mv $NAME release/ && echo moved $NAME; fi
 deploy:
   provider: s3
