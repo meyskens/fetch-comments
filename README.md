@@ -1,7 +1,7 @@
 Fetch Comments
 ==============
 
-This is a simple Go script that fetched all comments from a Git repository to train an ML model to detect typos in code comments.
+This is a simple Go script that fetched all comments from a Git repository to train an [ML model to detect typos](https://github.com/irinakhismatullina/style-analyzer/tree/feature/typos-analyzer/lookout/style/typos_checker) in code comments.
 This project uses [bblfsh](https://bblf.sh/v2.6.1/) and [go-git](https://github.com/src-d/go-git) to do this.
 
 ## How to use
