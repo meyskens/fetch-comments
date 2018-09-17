@@ -22,7 +22,7 @@ before_install:
   bblfsh/bblfshd
 - docker exec -it bblfshd bblfshctl driver install --all
 script:
-- travis_wait go run *.go $URL $NAME
+- travis_wait 50 go run *.go $URL $NAME
 - mkdir release
 - mv $NAME release/
 deploy:
